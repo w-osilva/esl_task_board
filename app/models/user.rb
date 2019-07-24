@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :projects, foreign_key: "manager_id"
+  has_many :stories_as_requester, foreign_key: "requester_id", class_name: "Story"
+  has_many :stories_as_owner, foreign_key: "owner_id", class_name: "Story"
 
   validates :name, presence: true
 
