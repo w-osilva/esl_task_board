@@ -1,1 +1,25 @@
-<h1>Home</h1>
+<div class="row">
+  <div class="col-8">
+    <div class="jumbotron">
+      <h1 class="display-4">Hello, welcome! </h1>
+      <p class="lead">
+        To get started choose a Project or create it yourself.</p>
+      <hr class="my-4">
+      <p>Here you can create your Project.</p>
+      <p class="lead">
+        <%= link_to 'New Project', new_project_path, class: 'btn btn-primary' %>
+      </p>
+    </div>
+  </div>
+
+  <div class="col-4 pipeline border border border-top-0 border-bottom-0 border-right-0">
+    <h5>Projects</h5>
+
+    <% @projects.each do |project| %>
+      <div class="row">
+        <%= link_to project.name, project_path(project), class: 'btn btn-list' %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
