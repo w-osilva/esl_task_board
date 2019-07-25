@@ -1,14 +1,13 @@
 module ProjectsHelper
-  def pending_stories(project)
-    project.stories.with_status(:pending)
+
+  def filter_stories(project, status: '')
+    case status.to_sym
+    when :pending then project.stories.with_status(:pending)
+    when :started then project.stories.with_status(:started)
+    when :delivered then project.stories.with_status(:delivered)
+    when :accepted then project.stories.with_status(:accepted)
+    else project.stories
+    end
   end
-  def started_stories(project)
-    project.stories.with_status(:started)
-  end
-  def delivered_stories(project)
-    project.stories.with_status(:delivered)
-  end
-  def accepted_stories(project)
-    project.stories.with_status(:accepted)
-  end
+
 end
