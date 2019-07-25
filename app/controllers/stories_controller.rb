@@ -67,7 +67,13 @@ class StoriesController < ApplicationController
                                       :status,
                                       :started_at,
                                       :finished_at,
-                                      :deadline
+                                      :deadline,
+                                      tasks_attributes: [
+                                          :id,
+                                          :description,
+                                          :done,
+                                          :_destroy
+                                      ]
       )
     end
 end

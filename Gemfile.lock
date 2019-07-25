@@ -67,6 +67,7 @@ GEM
       xpath (~> 3.2)
     childprocess (1.0.1)
       rake (< 13.0)
+    cocoon (1.2.14)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     devise (4.6.2)
@@ -243,6 +244,7 @@ DEPENDENCIES
   bootstrap (~> 4.2.1)
   byebug
   capybara (~> 3.8)
+  cocoon
   devise
   devise-bootstrap-views (~> 1.0)
   enumerize

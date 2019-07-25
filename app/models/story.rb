@@ -3,6 +3,7 @@ class Story < ApplicationRecord
   belongs_to :requester, class_name: 'User'
   belongs_to :owner, class_name: 'User', optional: true
   has_many :tasks
+  accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
 
   validates :name, presence: true
   validates :points, inclusion: { in: [nil, 1, 2, 3, 5, 8, 13] }
