@@ -20,9 +20,8 @@ RSpec.describe Story, type: :model do
 
   describe "validations" do
     it { should validate_presence_of(:name) }
-    it { should validate_inclusion_of(:points).in_array([1, 2, 3, 5, 8, 13]) }
+    it { should validate_inclusion_of(:points).in_array([nil, 1, 2, 3, 5, 8, 13]) }
     it { should validate_presence_of(:requester) }
-    it { should validate_presence_of(:owner) }
 
     context "with_options" do
       describe "unless: :pending?" do

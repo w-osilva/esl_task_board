@@ -5,10 +5,10 @@ class Story < ApplicationRecord
   has_many :tasks
 
   validates :name, presence: true
-  validates :points, inclusion: { in: [1, 2, 3, 5, 8, 13] }
+  validates :points, inclusion: { in: [nil, 1, 2, 3, 5, 8, 13] }
   validates :project, presence: true
   validates :requester, presence: true
-  validates :owner, presence: true
+  validates :owner
   with_options unless: :pending? do |it|
     it.validates :started_at, presence: true
   end
