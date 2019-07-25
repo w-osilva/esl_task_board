@@ -1,114 +1,46 @@
-<div class="dropdown show">
-  <a class=" btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <h5 style="display: inline"><%= @project.name %></h5>
-  </a>
-
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <%= link_to "Edit", edit_project_path(@project), class: 'dropdown-item' %>
-    <%= link_to "Delete", @project, method: :delete, data: {confirm: 'Are you sure you want to delete this Project?'}, class: 'dropdown-item text-danger' %>
-  </div>
+<a class="btn btn-sm dropdown-toggle pt-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <h5 style="display: inline"><%= @project.name %></h5>
+</a>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+  <%= link_to edit_project_path(@project), class: 'dropdown-item' do %>
+    <%= icon('fas', 'pencil-alt') %> Edit
+  <% end %>
+  <%= link_to @project, method: :delete, data: {confirm: 'Are you sure you want to delete this Project?'}, class: 'dropdown-item text-danger' do %>
+    <%= icon('fas', 'trash-alt') %> Delete
+  <% end %>
 </div>
 
 <div class="row">
   <!--  Pending pipeline -->
-  <div class="col-3 pipeline-todo">
+  <div class="col-3" id="pipeline-todo">
     <h6>To do</h6>
-
-    <form>
-      <div class="form-row align-items-center">
-        <div class="col-12">
-          <input type="text" class="form-control" id="inlineFormInputName" placeholder="New">
-        </div>
-      </div>
-    </form>
-    <br>
-
-    <% pending_stories(@project).each do |story| %>
-      <div class="card">
-        <div class="card-body">
-          <h6 class="card-title"><%= story.name %></h6>
-          <p class="card-text"><%= story.description %></p>
-            <div class="row">
-              <div class="col-12">
-                <span class="text-muted small">
-                  <%= icon('fas', 'user-circle') %> <%= story.owner.name %></span>
-                <br>
-                <span class="text-success small">
-                  <%= icon('fas', 'check-square') %> <strong><%= story.tasks.with_done(:done).count %></strong> / <%= story.tasks.count %>
-                </span> <br>
-                <span class="text-warning small"><%= icon('fas', 'calendar-check') %> <%= story.deadline %></span>
-                <span class="badge badge-pill badge-primary float-right"><%= story.points %></span>
-              </div>
-            </div>
-        </div>
-      </div>
-    <% end %>
-
+    <%= render 'story_form', status: :pending %>
+    <div class="card-wrapper">
+      <%= render partial: 'story', collection: filter_stories(@project, status: :pending), cached: true %>
+    </div>
   </div>
 
   <!--  Started pipeline -->
-  <div class="col-3 pipeline-doing">
+  <div class="col-3" id="pipeline-doing">
     <h6>Doing</h6>
-
-    <form>
-      <div class="form-row align-items-center">
-        <div class="col-12">
-          <input type="text" class="form-control" id="inlineFormInputName" placeholder="New">
-        </div>
-      </div>
-    </form>
-    <br>
-
-    <% started_stories(@project).each do |story| %>
-      <div class="card">
-        <div class="card-body">
-          <h6 class="card-title"><%= story.name %></h6>
-          <p class="card-text"><%= story.description %></p>
-          <div class="row">
-            <div class="col-12">
-                <span class="text-muted small">
-                  <%= icon('fas', 'user-circle') %> <%= story.owner.name %></span>
-              <br>
-              <span class="text-success small">
-                  <%= icon('fas', 'check-square') %> <strong><%= story.tasks.with_done(:done).count %></strong> / <%= story.tasks.count %>
-                </span> <br>
-              <span class="text-warning small"><%= icon('fas', 'calendar-check') %> <%= story.deadline %></span>
-              <span class="badge badge-pill badge-primary float-right"><%= story.points %></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-
+    <%= render 'story_form', status: :started %>
+    <div class="card-wrapper">
+      <%= render partial: 'story', collection: filter_stories(@project, status: :started), cached: true %>
+    </div>
   </div>
 
   <!--  Delivered pipeline -->
-  <div class="col-3 pipeline-validating">
+  <div class="col-3" id="pipeline-validating">
     <h6>Validating</h6>
-
-    <form>
-      <div class="form-row align-items-center">
-        <div class="col-12">
-          <input type="text" class="form-control" id="inlineFormInputName" placeholder="New">
-        </div>
-      </div>
-    </form>
-    <br>
+    <%= render 'story_form', status: :delivered %>
+    <%= render partial: 'story', collection: filter_stories(@project, status: :delivered), cached: true %>
   </div>
 
   <!--  Accepted pipeline -->
-  <div class="col-3 pipeline-done">
+  <div class="col-3" id="pipeline-done">
     <h6>Done</h6>
-
-    <form>
-      <div class="form-row align-items-center">
-        <div class="col-12">
-          <input type="text" class="form-control" id="inlineFormInputName" placeholder="New">
-        </div>
-      </div>
-    </form>
-    <br>
-
+    <%= render 'story_form', status: :accepted %>
+    <%= render partial: 'story', collection: filter_stories(@project, status: :accepted), cached: true %>
   </div>
 
 </div>

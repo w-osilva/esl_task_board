@@ -1,0 +1,41 @@
+
+<%= simple_form_for([@project, @story]) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="row">
+      <div class="col-2"><%= f.input :status %></div>
+      <div class="col-2"><%= f.input :points %></div>
+      <div class="col-4"><%= f.association :owner, label: 'Assigned to' %></div>
+      <div class="col-4"><%= f.association :requester, disabled: true, label: 'Requested by' %></div>
+    </div>
+
+    <hr>
+
+    <%= f.input :name %>
+    <%= f.input :description %>
+
+
+    <div class="row">
+      <div class="col-lg-6 "><%= f.input :deadline %></div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 "><%= f.input :started_at, disabled: true %></div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 "><%= f.input :finished_at, disabled: true %></div>
+    </div>
+
+
+
+    <%= f.input :project_id, as: :hidden %>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn-primary" %>
+    <%= link_to 'Cancel', project_path(@story.project), class: 'btn btn-outline-secondary' %>
+  </div>
+<% end %>

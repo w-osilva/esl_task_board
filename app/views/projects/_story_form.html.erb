@@ -1,0 +1,13 @@
+<%= simple_form_for(:story, url: project_stories_path(@project), method: 'post', html: { autocomplete: "off"} ) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :name, label: false, placeholder: "New story", input_html: {class: "input_new_story", autocomplete: 'off'} %>
+    <%= f.input :status, as: :hidden, input_html: { value: status } %>
+    <%= f.input :project_id, as: :hidden, input_html: { value: @project.id } %>
+    <%= f.input :requester_id, as: :hidden, input_html: { value: current_user.id } %>
+  </div>
+
+  <div class="form-actions d-none" style="margin-top: -14px; margin-bottom: 10px;">
+    <%= f.button :submit, class: "btn-primary btn-sm" %>
+    <%= f.button :button, icon('fas', 'times'), type: "reset", class: "btn-link" %>
+  </div>
+<% end %>
