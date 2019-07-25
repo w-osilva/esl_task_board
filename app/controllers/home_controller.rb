@@ -3,6 +3,6 @@ class HomeController < ApplicationController
   before_action :user_required!, only:[:index]
 
   def index
-    @projects = current_user.projects
+    @projects = Project.where(manager: current_user)
   end
 end
