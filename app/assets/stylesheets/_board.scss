@@ -1,0 +1,53 @@
+// wrapper used in container (around everything)
+body{
+  overflow: hidden;
+  height: 100%;
+}
+
+.wrapper{
+  padding-top: 10px;
+  padding-bottom: 0;
+  height: 91vh;
+  overflow: auto;
+  width: 100%;
+}
+
+// used in homepage to list Projects
+.pipeline{
+  height: 84.5vh;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  .card-wrapper{
+    overflow-y: auto;
+    height: 68vh;
+  }
+}
+
+.btn-list {
+  @extend .btn-light;
+  text-align: left;
+  width: 96%;
+}
+
+#pipeline-todo{
+  @extend .pipeline;
+  background-color: rgba(179,215,255,0.3);
+}
+
+#pipeline-doing{
+  @extend .pipeline;
+  background-color: rgba(0,123,255,0.3);
+}
+
+#pipeline-validating{
+  @extend .pipeline;
+  background-color: rgba(255,193,7,0.3);
+}
+
+#pipeline-done{
+  @extend .pipeline;
+  background-color: rgba(40,167,69,0.3);
+}
+
+
