@@ -20,7 +20,7 @@ module StoryStatusSequence
   end
 
   def previous_status
-    version_status || saved_status
+    saved_status || version_status
   end
 
   def next_status

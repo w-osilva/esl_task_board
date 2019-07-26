@@ -21,10 +21,6 @@ class Story < ApplicationRecord
     it.validate :validate_status_accepted
   end
 
-  before_validation :autoset_started_at, unless: :pending?
-  before_validation :autoset_finished_at, if: :accepted?
-  before_save :autounset_finished_at, unless: :accepted?
-
   extend Enumerize
   enumerize :status, in: [:pending, :started, :delivered, :accepted ], default: :pending, predicates: true, scope: true
 
@@ -49,6 +45,13 @@ class Story < ApplicationRecord
     if tasks_status.include?('pending')
       errors.add(:status, "cannot be 'accepted' because there are tasks pending")
     end
+  end
+
+  def save
+    autoset_started_at unless pending?
+    autoset_finished_at if accepted?
+    autounset_finished_at unless accepted?
+    super
   end
 
   def autoset_started_at
