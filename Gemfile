@@ -17,6 +17,7 @@ gem 'font-awesome-sass', '~> 5.9.0'
 gem 'enumerize'
 gem 'simple_form'
 gem 'cocoon'
+gem 'bootstrap4-datetime-picker-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
