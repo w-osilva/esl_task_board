@@ -16,8 +16,31 @@
 //= require rails-ujs
 //= require activestorage
 //= require cocoon
+//= require moment
+// If you require timezone data (see moment-timezone-rails for additional file options)
+//= require moment-timezone-with-data
+//= require tempusdominus-bootstrap-4
 //= require_tree .
 
 $(function(){
     Board.initialize()
+
+    // Tempus Dominus (Datetimepicker)
+    $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+        icons: {
+            time: 'far fa-clock',
+            date: 'far fa-calendar',
+            up: 'far fa-arrow-up',
+            down: 'far fa-arrow-down',
+            previous: 'far fa-chevron-left',
+            next: 'far fa-chevron-right',
+            today: 'far fa-calendar-check-o',
+            clear: 'far fa-trash',
+            close: 'far fa-times'
+        } });
+
+    $('#story_deadline').datetimepicker({
+        format: "YYYY-MM-DD HH:mm Z",
+        autoclose: true
+    });
 })

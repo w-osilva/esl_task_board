@@ -2,9 +2,8 @@ $theme-colors: ( "bootstrap": #563d7c, "simpleform": #00617f );
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "button";
+@import "tempusdominus-bootstrap-4";
 
-// simple_form helpers
 @import "simple_form-bootstrap/simple_form-bootstrap";
-
+@import "button";
 @import "board";
