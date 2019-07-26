@@ -1,6 +1,5 @@
-# ESL Task Board
+ # Desafio técnico
 
-## Desafio
 Desenvolver um sistema em Ruby on Rails com um board para cadastro e controle de histórias, inspirado no mecanismo de colunas e cards do “Trello”.
   * A aplicação deve ser acessível apenas para usuários logados, possuir testes unitários e testes de integração.
   * A interface deve utilizar um template do Bootstrap, e deve contar com recursos que agreguem valor à usabilidade onde relevante: drag and drop, modais, máscaras de data, etc., a critério do candidato.
@@ -22,3 +21,56 @@ Desenvolver um sistema em Ruby on Rails com um board para cadastro e controle de
 ## Modelagem sugerida
 
 ![Modelagem sugerida](modelagem.png)
+
+---
+
+# Deploy (local) 
+###### Certifique-se que seu sistema operacional possui os requisitos para executar este app.
+
+* Rails 5.2.3
+* Ruby 2.6.3
+* MariaDB 
+
+Após baixar o projeto (clone | zip), utilize o Bundler para instalar as dependencias:
+```bash
+$ bundle install
+```
+
+Edite as credenciais para conectar no banco de dados.
+```yaml
+# config/database.yml
+
+  host: '127.0.0.1' 
+  port: '3306'
+  username: 'your_user'
+  password: 'your_password'
+```  
+
+Crie o banco de dados e execute as migrações.
+```bash
+$ rake db:create && rake db:migrate
+```
+
+Inicie o servidor e acesse pelo navegador.
+O app deverá estar acessivel em __http://localhost:3000__
+```bash
+$ rails server
+```
+
+---
+
+## Change log
+### 1.0.0-alpha
+
+- [x] Setup do projeto e banco de dados
+- [x] Registro e autenticação com _Devise_
+- [x] Testes para models (cobertura em regras de negócio)
+- [x] CRUD de Project
+- [x] Interface do board
+- [x] CRUD de Story
+- [x] Edição dinamica de Tasks no formulário de Story com _Cocoon_
+- [x] "Datepicker" para campos de data com _Tempus Dominus_
+- [ ] "Drag in drop" para arrastar "cards" em "pipelines"
+- [ ] Edição de "card" em modal
+- [ ] Testes funcionais (em views) com _Capybara_
+- [ ] Deploy no Heroku
